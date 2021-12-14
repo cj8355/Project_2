@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PinKO</title>
+  <link rel="stylesheet" type="text/css" href="/css/jass.css">
+  <link rel="stylesheet" type="text/css" href="/style.css">
+ <style>
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+</style>
+</head>
+
+<body>
+  
+  <header class="homepage">
+    <a href='/'>
+    <h1>
+      <img src="/Assets/logo.png" alt="Logo" style="width: 80px;" /> 
+      PinKO
+    </h1>
+    </a>
+  </header>
+    <nav>
+    <a href="/about">About</a>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/api/products">Products</a>
+    <a href="/blog">Blog</a>
+    {{#if loggedIn}}
+    <button id="logout" class="btn-no-style">Logout</button>
+    {{else}}
+    <a href="/login">Login</a>
+    {{/if}}
+  </nav>
+  </nav>
+  <main class="main">
+   
+    {{{body}}}
+  </main>
+  <footer>
+      
+  </footer>
+
+{{#if loggedIn}}
+  <script src="/js/logout.js"></script>
+  {{/if}}
+</body>
+
+</html>
+
+
+
+
+
