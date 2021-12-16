@@ -20,7 +20,7 @@ body {
 }
 
 a {
-  color: black;
+  color: white;
   text-decoration: none;
 }
 
@@ -133,16 +133,16 @@ display: flex;
 }
 
 .login-card {
-  margin: 0 0 20px 0;
+  margin: 10px 0 20px 20px;
   flex: 0 0 50%;
-  max-width: 50%;
+  max-width: 75%;
   padding: 5px;
-  border: 3px solid var(--dark);
-  border-radius: var(--border-radius);
+  border: 3px solid rgb(170, 22, 22);
+  /*border-radius: var(--border-radius);*/
   border-style: double;
   border-width: thick;
-  background-color: #577a7c;
-  color: var(--light);
+  background-color: var(--light);
+  color: black;
 }
 
 .card header {
@@ -186,10 +186,10 @@ display: flex;
 h1 {
   color: rgb(170, 22, 22);
   font-family: 'Open Sans';
-  font-size: 3em;
+  font-size: 4em;
 }
 h2 {
-    color: red;
+    color: black;
 }
 .dropbtn {
     background-color: #3498DB;
