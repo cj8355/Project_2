@@ -1,137 +1,49 @@
 const router = require('express').Router();
-const sequelize = require('../config/connection');
-const { BlogPost, User, Comment } = require('../models');
+const { Post } = require('../models/');
 const withAuth = require('../utils/auth');
 
-// If the user is logged in, retreive all of their blog posts and display on the dashboard
-router.get('/', withAuth, (req, res) => {
-  console.log(req.session);
-  console.log('Dashboard');
-    BlogPost.findAll({
+router.get('/', withAuth, async (req, res) => {
+  try {
+    const postData = await Post.findAll({
       where: {
-        // use the ID from the session
-        user_id: req.session.user_id
+        userId: req.session.userId,
       },
-      attributes: [
-        'id',
-        'title',
-        'createdAt',
-        'content',
-        'imageSrc'
-      ],
-      include: [
-        {
-          model: Comment,
-          attributes: ['id', 'content', 'blogPost_id', 'user_id', 'createdAt'],
-          include: {
-            model: User,
-            attributes: ['username']
-          }
-        },
-        {
-          model: User,
-          attributes: ['username']
-        }
-      ]
-    })
-      .then(dbBlogPostData => {
-        // serialize data before passing to template
-        const blogPosts = dbBlogPostData.map(blogPost => blogPost.get({ plain: true }));
-        res.render('dashboard', { blogPosts, loggedIn: true });
-      })
-      .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-      });
-  });
+    });
 
-  // Allows users to edit/delete their blog posts
-  router.get('/edit/:id', withAuth, (req, res) => {
-    BlogPost.findOne({
-      where: {
-        id: req.params.id
-      },
-      attributes: [
-        'id',
-        'title',
-        'createdAt',
-        'content',
-        'imageSrc'
-      ],
-      include: [
-        {
-          model: Comment,
-          attributes: ['id', 'content', 'blogPost_id', 'user_id', 'createdAt'],
-          include: {
-            model: User,
-            attributes: ['username']
-          }
-        },
-        {
-          model: User,
-          attributes: ['username']
-        }
-      ]
-    })
-      .then(dbBlogPostData => {
-        if (!dbBlogPostData) {
-          res.status(404).json({ message: 'No post found with this id' });
-          return;
-        }
-  
-        // serialize the data
-        const blogPosts = dbBlogPostData.get({ plain: true });
+    const posts = postData.map((post) => post.get({ plain: true }));
 
-        res.render('edit-post', {
-            blogPosts,
-            loggedIn: true
-            });
-      })
-      .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-      });
+    res.render('all-posts-admin', {
+      layout: 'dashboard',
+      posts,
+    });
+  } catch (err) {
+    res.redirect('login');
+  }
 });
 
-// Allows users to create blog posts
-router.get('/create/', withAuth, (req, res) => {
-    BlogPost.findAll({
-      where: {
-        // use the ID from the session
-        user_id: req.session.user_id
-      },
-      attributes: [
-        'id',
-        'title',
-        'createdAt',
-        'content',
-        'imageSrc'
-      ],
-      include: [
-        {
-          model: Comment,
-          attributes: ['id', 'content', 'blogPost_id', 'user_id', 'createdAt'],
-          include: {
-            model: User,
-            attributes: ['username']
-          }
-        },
-        {
-          model: User,
-          attributes: ['username']
-        }
-      ]
-    })
-      .then(dbBlogPostData => {
-        // serialize data before passing to template
-        const blogPosts = dbBlogPostData.map(post => post.get({ plain: true }));
-        res.render('create-post', { blogPosts, loggedIn: true });
-      })
-      .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-      });
+router.get('/new', withAuth, (req, res) => {
+  res.render('new-post', {
+    layout: 'dashboard',
   });
+});
 
+router.get('/edit/:id', withAuth, async (req, res) => {
+  try {
+    const postData = await Post.findByPk(req.params.id);
+
+    if (postData) {
+      const post = postData.get({ plain: true });
+
+      res.render('edit-post', {
+        layout: 'dashboard',
+        post,
+      });
+    } else {
+      res.status(404).end();
+    }
+  } catch (err) {
+    res.redirect('login');
+  }
+});
 
 module.exports = router;
