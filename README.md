@@ -1,9 +1,10 @@
 # PinKO
 
-Link: 
+
+Link: https://aqueous-brushlands-28666.herokuapp.com
 
 ## Description
-PinKO is a photo sharing platform that focuses on clothing. A fake e-commerce store has also been created so that it's products can be posted on PinKO. The fake e-commerce store has the ability to process real payments through the help of PayPal.
+PinKO is a photo sharing platform that focuses on clothing. PinKO also has a clothing store in which users can make purchases through the use of PayPal. 
 
 ## Table of Contents
 
@@ -31,5 +32,7 @@ N/A
 The following is needed to run the test: N/A
 
 ## Questions
-If you have any questions about the repo, open an issue or contact cj8355, CAHuie, Saz88, Honorinenn, Ashleighw23, MBeler
-directly at: charlescallender.cc@gmail.com, Christopher.huie3@gmail.com, Chrishitz88@gmail.com, honorinendzah@gmail.com, ashleigh_williams23@hotmail.com, miles.beler@gmail.com
+
+If you have any questions about the repo, open an issue or contact cj8355, Honorinenn
+directly at: charlescallender.cc@gmail.com, honorinendzah@gmail.com
+
