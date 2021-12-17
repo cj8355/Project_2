@@ -119,4 +119,11 @@ router.get('/about', (req, res) => {
   res.render('about');
 });
 
+//GET Checkout
+router.get('/checkout', (req, res) => {
+  
+
+  res.render('checkout');
+});
+
 module.exports = router;
