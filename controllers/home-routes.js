@@ -1,94 +1,43 @@
 const router = require('express').Router();
-const sequelize = require('../config/connection');
-const { BlogPost, Comment, User } = require('../models');
+const { Post, Comment, User } = require('../models/');
 
-// GET all blog posts for homepage
+// get all posts for homepage
 router.get('/', async (req, res) => {
   try {
-    const dbBlogPostData = await BlogPost.findAll({
-      include: [
-        {
-          model: Comment,
-          attributes: ['content'],
-        },
-        {
-        model: User,
-        attributes: ['username'],
-        }
-      ],
+    const postData = await Post.findAll({
+      include: [User],
     });
 
-    const blogPosts = dbBlogPostData.map((blogPost) =>
-      blogPost.get({ plain: true })
-    );
-console.log(blogPosts);
-    res.render('homepage', {
-      blogPosts,
-      loggedIn: req.session.loggedIn,
-    });
+    const posts = postData.map((post) => post.get({ plain: true }));
+
+    res.render('all-posts', { posts });
   } catch (err) {
-    console.log(err);
     res.status(500).json(err);
   }
 });
 
-// GET one blog post
-router.get('/blogPost/:id', async (req, res) => {
-  // If the user is not logged in, redirect the user to the login page
-  if (!req.session.loggedIn) {
-    res.redirect('/login');
-  } else {
-    // If the user is logged in, allow them to view the blogposts
-    try {
-      const dbBlogPostData = await BlogPost.findByPk(req.params.id, {
-        include: [
-          {
-            model: Comment,
-            attributes: [
-              'id',
-              'content',
-              'createdAt',
-      
-            ],
-            include: {
-              model: User,
-              attributes: ['username']
-            }
-          },
-          {
-            model: User,
-            attributes: ['username']
-          }
-        ],
-      });
-      const blogPost = dbBlogPostData.get({ plain: true });
-      console.log(blogPost);
-      res.render('single-post', { blogPost, loggedIn: req.session.loggedIn });
-    } catch (err) {
-      console.log(err);
-      console.log("Apple");
-      res.status(500).json(err);
+// get single post
+router.get('/post/:id', async (req, res) => {
+  try {
+    const postData = await Post.findByPk(req.params.id, {
+      include: [
+        User,
+        {
+          model: Comment,
+          include: [User],
+        },
+      ],
+    });
+
+    if (postData) {
+      const post = postData.get({ plain: true });
+
+      res.render('single-post', { post });
+    } else {
+      res.status(404).end();
     }
-  }
-});
-
-// GET one comment
-router.get('/comment/:id', async (req, res) => {
-  // If the user is not logged in, redirect the user to the login page
-  if (!req.session.loggedIn) {
-    res.redirect('/login');
-  } else {
-    // If the user is logged in, allow them to view the comment
-    try {
-      const dbCommentData = await Comment.findByPk(req.params.id);
-
-      const comment = dbCommentData.get({ plain: true });
-
-      res.render('comment', { comment, loggedIn: req.session.loggedIn });
-    } catch (err) {
-      console.log(err);
-      res.status(500).json(err);
-    }
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 
@@ -101,22 +50,13 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
-router.get('/login', (req, res) => {
-  // if (req.session.loggedIn) {
-  //   res.redirect('/');
-  //   return;
-  // }
+router.get('/signup', (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect('/');
+    return;
+  }
 
-  res.render('login');
-});
-
-router.get('/about', (req, res) => {
-  // if (req.session.loggedIn) {
-  //   res.redirect('/');
-  //   return;
-  // }
-
-  res.render('about');
+  res.render('signup');
 });
 
 //GET Checkout

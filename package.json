@@ -1,21 +1,19 @@
 {
+<<<<<<< HEAD
   "name": "groupproject2",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "dependencies": {
-    "bcrypt": "^5.0.1",
-    "compression": "^1.7.4",
-    "connect-session-sequelize": "^7.1.2",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-handlebars": "^6.0.1",
-    "express-session": "^1.17.2",
     "mysql": "^2.18.1",
     "mysql2": "^2.3.3",
     "node": "^17.0.1",
     "sequelize": "^6.9.0"
   },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
@@ -24,11 +22,40 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/BALD-SAITAMA/GroupProject2.git"
+=======
+  "name": "tech-blog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coding-boot-camp/module-14-project-mvc.git"
+>>>>>>> main
   },
   "author": "",
   "license": "ISC",
   "bugs": {
+<<<<<<< HEAD
     "url": "https://github.com/BALD-SAITAMA/GroupProject2/issues"
   },
   "homepage": "https://github.com/BALD-SAITAMA/GroupProject2#readme"
+=======
+    "url": "https://github.com/coding-boot-camp/module-14-project-mvc/issues"
+  },
+  "homepage": "https://github.com/coding-boot-camp/module-14-project-mvc#readme",
+  "dependencies": {
+    "bcrypt": "^4.0.1",
+    "connect-session-sequelize": "^6.1.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "express-session": "^1.17.0",
+    "mysql2": "^2.0.1",
+    "nodemailer": "^6.7.1",
+    "sequelize": "^5.21.2"
+  }
+>>>>>>> main
 }
