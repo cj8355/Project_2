@@ -4,12 +4,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PinKO</title>
-  <link rel="stylesheet" type="text/css" href="/css/jass.css">
+<meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.paypal.com https://*.paypalobjects.com  ">
+  <title>Pinko</title>
+  <link rel="stylesheet" type="text/css" href="/jass.css">
   <link rel="stylesheet" type="text/css" href="/style.css">
- <style>
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
-</style>
+ 
 </head>
 
 <body>
@@ -17,12 +16,12 @@
   <header class="homepage">
     <a href='/'>
     <h1>
-      <img src="/Assets/logo.png" alt="Logo" style="width: 80px;" /> 
-      PinKO
+      <img src="/Assets/logo.png" alt="Logo" style="width: 80px;" /> Pinko
     </h1>
     </a>
   </header>
     <nav>
+<<<<<<< HEAD
     {{!--<a href="/about">About</a>--}}
     <a href="/dashboard">Dashboard</a>
     <a href="/api/products">Products</a>
@@ -31,9 +30,13 @@
     {{#if loggedIn}}
     <button id="logout" class="btn-no-style">Logout</button>
     {{else}}
+=======
+    <a href="/about">About</a>
+    <a href="/api/products">Products</a>
+    <a href="/blog">Blog</a>
+>>>>>>> 9e38a2261627af2d0ee7ce0daf7a391b7ccce157
     <a href="/login">Login</a>
-    {{/if}}
-  </nav>
+    <a href="/checkout">Checkout</a>
   </nav>
   <main class="main">
    
@@ -43,9 +46,6 @@
       
   </footer>
 
-{{#if loggedIn}}
-  <script src="/js/logout.js"></script>
-  {{/if}}
 </body>
 
 </html>

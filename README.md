@@ -1,5 +1,6 @@
 # PinKO
 
+
 Link: https://aqueous-brushlands-28666.herokuapp.com
 
 ## Description
@@ -31,5 +32,7 @@ N/A
 The following is needed to run the test: N/A
 
 ## Questions
+
 If you have any questions about the repo, open an issue or contact cj8355, Honorinenn
 directly at: charlescallender.cc@gmail.com, honorinendzah@gmail.com
+

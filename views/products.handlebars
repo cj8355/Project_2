@@ -1,3 +1,15 @@
+<section class="container">
+  {{!-- <h3 class="product.name">{{product.name}}</h3> --}}
+  {{!-- <h4>Opening Hour: {{format_time gallery.starting_date}}</h4>
+  <h4>Closing Hour: {{format_time gallery.ending_date}}</h4> --}}
+  {{!-- <section class="card">
+    {{#each product.products as |product|}}
+    {{> product-details}}
+    {{/each}}
+  </section> --}}
+
+</section>
+
 {{#each dbProductData as |product|}}
   <div class="card container">
     <img src={{format_source product.parentFolder product.filename}} />
@@ -6,17 +18,15 @@
 
     <p>${{product.price}}</p>
 
-   
+    <p>Quantity - {{product.stock}}</p>
 
     {{!-- <p>{{product.category_id}}</p> --}}
 
-    {{!-- <p>Size - {{product.size}}</p> --}}
+    <p>Size - {{product.size}}</p>
 
     {{!-- <p>{{product.parentFolder}}</p> --}}
 
-    <p>Gender: {{product.gender}}</p>
-
-    {{!-- <button>Add to cart</button> --}}
+    <p>{{product.gender}}</p>
 
    <nav>
      <a href="/checkout"><button>Add to cart</button></a>
@@ -26,3 +36,22 @@
 {{/each}}
 
 
+
+{{!-- {{#each products as |product|}}
+{{> product-details}}
+{{/each}} --}}
+
+{{!-- <div class="text-center">
+  <p>{{name}}</p>
+  <p>{{{get_emoji}}}</p>
+  <p>{{description}}</p>
+  <p>Created by {{user.name}} on {{format_date date_created}}</p>
+  <p>
+    <span for="img" aria-label="money">💲</span>
+    <span class="dollar-amount">{{format_amount needed_funding}}</span>
+    needed
+  </p>
+  <p>
+    <button class="btn btn-primary">Buy from the store!</button>
+  </p>
+</div> --}}
